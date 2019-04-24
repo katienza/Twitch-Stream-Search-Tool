@@ -12,17 +12,22 @@
   <body>
     <div id='mainContainer'>
         <div id='searchContainer'>
-          <form class='search-form'>
+          <div class='search-form'>
             <input type='text' class='apiSearchQuery' placeholder='Search query...' tabindex=1>
-            <button type='submit' class='submitBtn' tabindex=2>Search</button>
-          </form>
+            <span type='submit' class='submitBtn' tabindex=2>Search</span>
+          </div>
         </div>
         <div id='searchResultsContainer'>
-          <div id='searchResultsNav'>
-            <div id='searchResultsViewers'></div>
-            <div id='searchResultsPages'></div>
+          <div id='errorHandler'></div>
+          <div id='landingPage'></div>
+          <div id='loadingPage'></div>
+          <div id='searchResultsView'>
+            <div id='searchResultsNav'>
+              <div id='searchResultsTotal'></div>
+              <div id='searchResultsPages'></div>
+            </div>
+            <div id='streamsContainer'></div>
           </div>
-          <div id='streamsContainer'></div>
         </div>
     </div>
     <script src='/src/app.js'></script>
