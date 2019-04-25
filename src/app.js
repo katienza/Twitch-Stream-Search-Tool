@@ -198,7 +198,8 @@ twitchUi.pageClick = btnID => {
  twitchUi.showStreamData = streamData => {
   const streamsContainer = document.getElementById('streamsContainer')
   const streamUrl = streamData.channel.url
-  const streamTitle = streamData.channel.status
+  const streamTitle = streamData.channel.display_name
+  const streamDescription = streamData.channel.status
   const streamViewers = streamData.viewers
   const streamGame = streamData.game
   const streamImg = streamData.preview.medium
@@ -210,14 +211,17 @@ twitchUi.pageClick = btnID => {
   const imageContainerDiv = twitchUi.createUiElement('div', {class:'image'})
   const image = twitchUi.createUiElement('img', {src:streamImg})
   const info = twitchUi.createUiElement('div', {class:'streamInfo'})
+  const description = twitchUi.createUiElement('div', {class:'streamDescription'})
 
   titleHeader.innerText = streamTitle
   info.innerText = streamGameAndViewers
+  description.innerText = streamDescription
 
   linkToStream.appendChild(image)
   imageContainerDiv.appendChild(linkToStream)
   containerDiv.appendChild(titleHeader)
   containerDiv.appendChild(info)
+  containerDiv.appendChild(description)
   containerDiv.appendChild(imageContainerDiv)
   streamsContainer.appendChild(containerDiv)
  }
