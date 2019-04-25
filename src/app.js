@@ -58,7 +58,7 @@ searchFormUtil.buildSearchUrl = () => {
  twitchQuery.search = () => {
   const url = twitchQuery.base + searchFormUtil.buildSearchUrl()
   const res = twitchQuery.updateHeaders(url)
-  console.log(url)
+
   if (!searchFormUtil.buildSearchUrl()) return
   // if (!res) twitchUi.showError('Cannot find results for your current search. Please try again.')
   twitchUi.pages = 1
@@ -70,9 +70,12 @@ searchFormUtil.buildSearchUrl = () => {
 twitchQuery.updateHeaders = url => {
     const header = document.head
     const script = document.createElement('script')
+
     script.setAttribute('src', url)
+
     header.appendChild(script)
     header.removeChild(script)
+
     return true
 }
 
@@ -90,7 +93,9 @@ twitchQuery.handleResponses = res => {
   const error = data.error
 
   if (totalFound > 0 && !error) {
-    twitchUi.build(totalFound, links, streams)
+    twitchUi.buildStreamsCount(totalFound)
+    twitchUi.buildPagination(totalFound, links)
+    twitchUi.buildStreamsContent(streams)
   }
 }
 
@@ -114,26 +119,36 @@ searchQuery.addEventListener('keydown', event => {
 
 /********************** User Interface Viewers & Pagination Methods *********************/
 
+
 /**
- * Returns total stream count, current/total page count,
- * and next and previous pagination
+ * Returns total stream count
  *
  * @param totalStreams    Receives value for number of streams
- * @param links     Receives next and prev values
- * @param streamsList     Receives array list of streams
+ *
  */
-twitchUi.build = (totalStreams, links, streamsList) => {
-  let streamsCount = document.getElementById('searchResultsTotal')
-  let pageTurner = document.getElementById('searchResultsPages')
+twitchUi.buildStreamsCount = totalStreams => {
+  const streamsCount = document.getElementById('searchResultsTotal')
+
   streamsCount.innerHTML = 'Total results: ' + totalStreams
-  let totalPages = Math.ceil(totalStreams / 20)
+}
+
+/**
+ * Returns current/total page count
+ * and next and previous pagination
+ *
+ * @param links     Receives next and prev values
+ *
+ */
+twitchUi.buildPagination = (totalStreams, links) => {
+  const pageTurner = document.getElementById('searchResultsPages')
+  let totalPages = Math.ceil(totalStreams / 5)
   let pagination = ""
 
   if (typeof links.prev !== 'undefined') {
     pagination += "<a id='prevBtn' href='"+links.prev+"'>&ltrif;</a>"
   }
 
-  pagination += "<span id='pageCount'>"+ twitchUi.pages+"/"+totalPages+"</span>"
+  pagination += "<span id='pageCount'>"+twitchUi.pages+"/"+totalPages+"</span>"
 
   if (typeof links.next !== 'undefined' && (twitchUi.pages < totalPages)) {
     pagination += " <a id='nextBtn' href='"+links.next+"'>&rtrif;</a>"
@@ -145,9 +160,18 @@ twitchUi.build = (totalStreams, links, streamsList) => {
   twitchUi.initPageClick('prevBtn')
 
   document.getElementById('streamsContainer').innerHTML = ""
+}
 
+/* Builds content for stream
+ *
+ * @param streamsList     Receives array list of streams
+ *
+ */
+twitchUi.buildStreamsContent = streamsList => {
   for (let props in streamsList) {
-    if (streamsList.hasOwnProperty(props)) twitchUi.showStreamData(streamsList[props])
+    if (streamsList.hasOwnProperty(props)) {
+      twitchUi.showStreamData(streamsList[props])
+    }
   }
 }
 
@@ -189,6 +213,17 @@ twitchUi.pageClick = btnID => {
 
 /********************** User Interface Stream Display Methods *********************/
 
+
+twitchUi.createUiElement = (element, attributes) => {
+  const ele = document.createElement(element)
+
+  for (let prop in attributes) {
+    if (attributes.hasOwnProperty(prop)) ele.setAttribute(prop, attributes[prop])
+  }
+
+  return ele
+}
+
 /**
  * Displays name of stream, number of users,
  * game name, and stream image
@@ -226,13 +261,5 @@ twitchUi.pageClick = btnID => {
   streamsContainer.appendChild(containerDiv)
  }
 
-twitchUi.createUiElement = (element, attributes) => {
-  const ele = document.createElement(element)
 
-  for (let prop in attributes) {
-    if (attributes.hasOwnProperty(prop)) ele.setAttribute(prop, attributes[prop])
-  }
-
-  return ele
-}
 
