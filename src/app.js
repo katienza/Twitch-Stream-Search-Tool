@@ -58,7 +58,7 @@ searchFormUtil.buildSearchUrl = () => {
  twitchQuery.search = () => {
   const url = twitchQuery.base + searchFormUtil.buildSearchUrl()
   const res = twitchQuery.updateHeaders(url)
-
+  console.log(url)
   if (!searchFormUtil.buildSearchUrl()) return
   // if (!res) twitchUi.showError('Cannot find results for your current search. Please try again.')
   twitchUi.pages = 1
@@ -112,7 +112,7 @@ searchQuery.addEventListener('keydown', event => {
   if (event.keyCode === 13) twitchQuery.search()
 })
 
-/********************** User Interface Methods *********************/
+/********************** User Interface Viewers & Pagination Methods *********************/
 
 /**
  * Returns total stream count, current/total page count,
@@ -126,7 +126,7 @@ twitchUi.build = (totalStreams, links, streamsList) => {
   let streamsCount = document.getElementById('searchResultsTotal')
   let pageTurner = document.getElementById('searchResultsPages')
   streamsCount.innerHTML = 'Total results: ' + totalStreams
-  let totalPages = Math.ceil(totalStreams / 5)
+  let totalPages = Math.ceil(totalStreams / 20)
   let pagination = ""
 
   if (typeof links.prev !== 'undefined') {
@@ -145,6 +145,10 @@ twitchUi.build = (totalStreams, links, streamsList) => {
   twitchUi.initPageClick('prevBtn')
 
   document.getElementById('streamsContainer').innerHTML = ""
+
+  for (let props in streamsList) {
+    if (streamsList.hasOwnProperty(props)) twitchUi.showStreamData(streamsList[props])
+  }
 }
 
 /**
@@ -182,4 +186,49 @@ twitchUi.pageClick = btnID => {
   }
 }
 
+
+/********************** User Interface Stream Display Methods *********************/
+
+/**
+ * Displays name of stream, number of users,
+ * game name, and stream image
+ *
+ * @param streamData    Receives parsed stream data
+ */
+ twitchUi.showStreamData = streamData => {
+  const streamsContainer = document.getElementById('streamsContainer')
+  const streamUrl = streamData.channel.url
+  const streamTitle = streamData.channel.status
+  const streamViewers = streamData.viewers
+  const streamGame = streamData.game
+  const streamImg = streamData.preview.medium
+  const streamGameAndViewers = streamGame + ' - ' + streamViewers + ' viewers'
+
+  const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
+  const containerDiv = twitchUi.createUiElement('div', {class:'streamsContainer'})
+  const titleHeader = document.createElement('H2')
+  const imageContainerDiv = twitchUi.createUiElement('div', {class:'image'})
+  const image = twitchUi.createUiElement('img', {src:streamImg})
+  const info = twitchUi.createUiElement('div', {class:'streamInfo'})
+
+  titleHeader.innerText = streamTitle
+  info.innerText = streamGameAndViewers
+
+  linkToStream.appendChild(image)
+  imageContainerDiv.appendChild(linkToStream)
+  containerDiv.appendChild(titleHeader)
+  containerDiv.appendChild(info)
+  containerDiv.appendChild(imageContainerDiv)
+  streamsContainer.appendChild(containerDiv)
+ }
+
+twitchUi.createUiElement = (element, attributes) => {
+  const ele = document.createElement(element)
+
+  for (let prop in attributes) {
+    if (attributes.hasOwnProperty(prop)) ele.setAttribute(prop, attributes[prop])
+  }
+
+  return ele
+}
 
