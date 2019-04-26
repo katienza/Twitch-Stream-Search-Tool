@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Nunito', 'arial' sans-serif;
   background-color: #f6f6f6;
   margin: 0;
   min-height: 100%;
@@ -86,4 +86,36 @@ a#prevBtn, a#nextBtn{
 #searchResultsPages {
   margin: -20px 10px 0px 0px;
   font-size: 14px;
+}
+
+
+.streamsContainer {
+  display: flex;
+  margin: 15px 0px 0px 0px;
+}
+
+.imageContainer {
+  flex-flow: column wrap;
+}
+
+.streamDetails {
+  flex-flow: column wrap;
+}
+
+.name {
+  margin: 10px 0px 30px 15px;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.streamGameAndViewers {
+  margin: 0px 0px 0px 15px;
+  font-size: 16px;
+  color: #454545;
+}
+
+.streamDescription {
+  margin: 0px 0px 0px 15px;
+  font-size: 16px;
+  color: #454545;
 }

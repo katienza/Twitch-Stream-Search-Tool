@@ -239,12 +239,15 @@ twitchUi.createUiElement = (element, attributes) => {
   const streamImg = streamData.preview.medium
   const streamGameAndViewers = streamGame + ' - ' + streamViewers + ' viewers'
 
-  const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
   const containerDiv = twitchUi.createUiElement('div', {id: streamData._id, class:'streamsContainer'})
-  const titleHeader = document.createElement('H2')
-  const imageContainerDiv = twitchUi.createUiElement('div', {class:'image'})
+  const imageContainer = twitchUi.createUiElement('div', {class:'imageContainer'})
   const image = twitchUi.createUiElement('img', {src:streamImg})
-  const info = twitchUi.createUiElement('div', {class:'streamInfo'})
+  const imageLinkDiv = twitchUi.createUiElement('div', {class:'image'})
+  const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
+
+  const streamDetails = twitchUi.createUiElement('div', {class:'streamDetails'})
+  const titleHeader = twitchUi.createUiElement('div', {class:'name'})
+  const info = twitchUi.createUiElement('div', {class:'streamGameAndViewers'})
   const description = twitchUi.createUiElement('div', {class:'streamDescription'})
 
   titleHeader.innerText = streamTitle
@@ -252,11 +255,13 @@ twitchUi.createUiElement = (element, attributes) => {
   description.innerText = streamDescription
 
   linkToStream.appendChild(image)
-  imageContainerDiv.appendChild(linkToStream)
-  containerDiv.appendChild(titleHeader)
-  containerDiv.appendChild(info)
-  containerDiv.appendChild(description)
-  containerDiv.appendChild(imageContainerDiv)
+  imageLinkDiv.appendChild(linkToStream)
+  imageContainer.appendChild(imageLinkDiv)
+  streamDetails.appendChild(titleHeader)
+  streamDetails.appendChild(info)
+  streamDetails.appendChild(description)
+  containerDiv.appendChild(imageContainer)
+  containerDiv.appendChild(streamDetails)
   streamsContainer.appendChild(containerDiv)
  }
 
