@@ -68,13 +68,12 @@ searchFormUtil.buildSearchUrl = () => {
  * Asynchronously updates CORS headers.
  */
 twitchQuery.updateHeaders = url => {
-    const header = document.head
     const script = document.createElement('script')
 
     script.setAttribute('src', url)
 
-    header.appendChild(script)
-    header.removeChild(script)
+    document.head.appendChild(script)
+    document.head.removeChild(script)
 
     return true
 }
@@ -241,7 +240,7 @@ twitchUi.createUiElement = (element, attributes) => {
   const streamGameAndViewers = streamGame + ' - ' + streamViewers + ' viewers'
 
   const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
-  const containerDiv = twitchUi.createUiElement('div', {class:'streamsContainer'})
+  const containerDiv = twitchUi.createUiElement('div', {id: streamData._id, class:'streamsContainer'})
   const titleHeader = document.createElement('H2')
   const imageContainerDiv = twitchUi.createUiElement('div', {class:'image'})
   const image = twitchUi.createUiElement('img', {src:streamImg})

@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1.0'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
 
     <title>Twitch Stream Search</title>
 
-    <link rel="stylesheet" href="/public/style.css"/>
+    <link rel="stylesheet" href="public/style.css">
 
   </head>
+
   <body>
     <div id='mainContainer'>
         <div id='searchContainer'>
           <div class='search-form'>
-            <input type='text' class='apiSearchQuery' placeholder='Search query...' tabindex=1>
-            <span type='submit' class='submitBtn' tabindex=2>Search</span>
+            <span id='SonyLogoHeader'>
+              <a href='http://www.sony.com'>
+                <img src='https://www.playstation.com/en-us/etc/designs/pdc/clientlibs_base/images/nav/headersonylogo-home-2x.jpg' alt='Sony' title='SonyLogo' class='sonyLogo' style='background-color: white'>
+              </a></span>
+            </span>
+            <span id='PlaystationLogoHeader'>
+              <a href='http://www.playstation.com'>
+                <img src='https://media.playstation.com/is/image/SCEA/navigation_home_ps-logo-us?$Icon$' alt='Playstation' title='Playstation Logo' class='playstationLogo'>
+              </a>
+            </span>
+            <span id='userSearch'>
+              <input type='text' class='apiSearchQuery' placeholder='Search query...' tabindex=1>
+              <button type='submit' class='submitBtn' tabindex=2>Search</button>
+            </span>
           </div>
         </div>
         <div id='searchResultsContainer'>
@@ -26,11 +39,14 @@
               <div id='searchResultsTotal'></div>
               <div id='searchResultsPages'></div>
             </div>
-            <div id='streamsContainer'></div>
+            <div id='streamsContainer'>
+            </div>
           </div>
         </div>
     </div>
+
     <script src='/src/app.js'></script>
   </body>
+
 </html>
 

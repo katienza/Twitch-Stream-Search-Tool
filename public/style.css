@@ -1,3 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  width: 100%;
+}
+
 body {
   font-family: sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  min-height: 100%;
+  font-size: 16px;
+}
+
+
+.search-form {
+  text-align: left;
+  background-image: -webkit-linear-gradient(top, #0072CE, #003087);
+  border: 1px solid #e4dede;
+  padding: 50px 15px 25px 15px;
+  margin: 20px 200px -20px 200px;
+}
+
+.sonyLogo {
+  position: relative;
+  float: right;
+  height: 75px;
+  width: 125px;
+  margin: -50px -15px 25px 25px;
+}
+
+.playstationLogo {
+  position: relative;
+  float: right;
+  height: 40px;
+  width: 60px;
+  margin: -35px 0px 25px 0px;
+}
+
+#userSearch {
+  position: relative;
+  float: left;
+  margin: -15px 0px 15px 0px;
+}
+
+
+a.submitBtn {
+  text-decoration: none;
+  color: #FDFEFE;
+}
+
+a#prevBtn, a#nextBtn{
+  text-decoration: none;
+  color: #454545;
+}
+
+a.submitBtn:hover, a#prevBtn:hover, a#nextBtn:hover {
+  color: #3498DB;
+  text-decoration: underline;
+}
+
+
+#searchResultsContainer {
+  position: relative;
+  border: 1px solid #e4dede;
+  margin: 20px 200px 0px 200px;
 }
