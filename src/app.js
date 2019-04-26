@@ -52,6 +52,20 @@ searchFormUtil.buildSearchUrl = () => {
 /********************** Twitch Query Methods *********************/
 /******** Responsible for logic control of search query **********/
 
+/*
+* Enables searchButton to submit form field value
+*/
+searchButton.addEventListener('click', () => twitchQuery.search())
+
+/**
+ * A keydown handler for the query to support hitting enter
+ *
+ * @param event   The event for particular key attached
+ */
+searchQuery.addEventListener('keydown', event => {
+  if (event.keyCode === 13) twitchQuery.search()
+})
+
 /**
  * Builds search query on behalf of user.
  */
@@ -74,8 +88,6 @@ twitchQuery.updateHeaders = url => {
 
     document.head.appendChild(script)
     document.head.removeChild(script)
-
-    return true
 }
 
 /**
@@ -101,20 +113,6 @@ twitchQuery.handleResponses = res => {
 function stringifyjsoncb(data) {
   twitchQuery.handleResponses(JSON.stringify(data))
 }
-
-/*
-* Enables searchButton to submit form field value
-*/
-searchButton.addEventListener('click', twitchQuery.search)
-
-/**
- * A keydown handler for the query to support hitting enter
- *
- * @param event   The event for particular key attached
- */
-searchQuery.addEventListener('keydown', event => {
-  if (event.keyCode === 13) twitchQuery.search()
-})
 
 /********************** User Interface Viewers & Pagination Methods *********************/
 
@@ -144,19 +142,19 @@ twitchUi.buildPagination = (totalStreams, links) => {
   let pagination = ""
 
   if (typeof links.prev !== 'undefined') {
-    pagination += "<a id='prevBtn' href='"+links.prev+"'>&ltrif;</a>"
+    pagination += "<a id='prevButton' href='"+links.prev+"'>&ltrif;</a>"
   }
 
   pagination += "<span id='pageCount'>"+twitchUi.pages+"/"+totalPages+"</span>"
 
   if (typeof links.next !== 'undefined' && (twitchUi.pages < totalPages)) {
-    pagination += " <a id='nextBtn' href='"+links.next+"'>&rtrif;</a>"
+    pagination += " <a id='nextButton' href='"+links.next+"'>&rtrif;</a>"
   }
 
   pageTurner.innerHTML = pagination
 
-  twitchUi.initPageClick('nextBtn')
-  twitchUi.initPageClick('prevBtn')
+  twitchUi.initPageClick('nextButton')
+  twitchUi.initPageClick('prevButton')
 
   document.getElementById('streamsContainer').innerHTML = ""
 }
@@ -200,9 +198,9 @@ twitchUi.pageClick = btnID => {
   let res = twitchQuery.updateHeaders(pageAPIUrl+"&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou")
 
 
-  if (res && btnID === 'prevBtn') {
+  if (res && btnID === 'prevButton') {
     twitchUi.pages = twitchUi.pages - 1
-  } else if (res && btnID === 'nextBtn') {
+  } else if (res && btnID === 'nextButton') {
     twitchUi.pages = twitchUi.pages + 1
   } else {
   //   twitchUi.showError('An error has occured. Please try again.')
@@ -240,15 +238,15 @@ twitchUi.createUiElement = (element, attributes) => {
   const streamGameAndViewers = streamGame + ' - ' + streamViewers + ' viewers'
 
   const containerDiv = twitchUi.createUiElement('div', {id: streamData._id, class:'streamsContainer'})
-  const imageContainer = twitchUi.createUiElement('div', {class:'imageContainer'})
+  const imageContainer = twitchUi.createUiElement('ul', {class:'imageContainer', style:'list-style-type:none'})
   const image = twitchUi.createUiElement('img', {src:streamImg})
-  const imageLinkDiv = twitchUi.createUiElement('div', {class:'image'})
+  const imageLinkDiv = twitchUi.createUiElement('li', {class:'image'})
   const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
 
-  const streamDetails = twitchUi.createUiElement('div', {class:'streamDetails'})
-  const titleHeader = twitchUi.createUiElement('div', {class:'name'})
-  const info = twitchUi.createUiElement('div', {class:'streamGameAndViewers'})
-  const description = twitchUi.createUiElement('div', {class:'streamDescription'})
+  const streamDetails = twitchUi.createUiElement('ul', {class:'streamDetails', style:'list-style-type:none'})
+  const titleHeader = twitchUi.createUiElement('li', {class:'name'})
+  const info = twitchUi.createUiElement('li', {class:'streamGameAndViewers'})
+  const description = twitchUi.createUiElement('li', {class:'streamDescription'})
 
   titleHeader.innerText = streamTitle
   info.innerText = streamGameAndViewers

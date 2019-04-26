@@ -8,9 +8,13 @@ html {
 }
 
 body {
-  font-family: 'Nunito', 'arial' sans-serif;
+  font-family: 'Nunito', 'arial', sans-serif;
+  background-image: url(https://media.playstation.com/is/image/SCEA/vr-refresh-flow-bg?$native_nt$);
+  background-size: cover;
+  background-repeat: no-repeat;
   background-color: #f6f6f6;
   margin: 0;
+  padding: 0;
   min-height: 100%;
   font-size: 16px;
 }
@@ -19,56 +23,67 @@ body {
 .search-form {
   text-align: left;
   background-image: -webkit-linear-gradient(top, #0072CE, #003087);
-  border: 1px solid #e4dede;
-  padding: 50px 15px 25px 15px;
-  margin: 20px 200px -20px 200px;
-}
-
-.sonyLogo {
-  position: relative;
-  float: right;
-  height: 75px;
-  width: 125px;
-  margin: -50px -15px 25px 25px;
+  background-position: bottom;
+  border: 1px solid -webkit-linear-gradient(top, #0072CE, #003087);
+  height: 64px;
+  padding: 30px 15px 30px 15px;
 }
 
 .playstationLogo {
   position: relative;
   float: right;
-  height: 40px;
-  width: 60px;
-  margin: -35px 0px 25px 0px;
+  height: 30px;
+  width: 50px;
+  margin: -15px 0px 0px 0px;
 }
 
 #userSearch {
   position: relative;
+  height: 30px;
+  width: 300px;
+  background: #454545;
+  bottom: 7px;
+  right: 7px;
   float: left;
-  margin: -15px 0px 15px 0px;
+  margin: -5px 0px 0px 20px;
 }
 
+.apiSearchQuery {
+  position: relative;
+  color: #fff;
+  font-family: inherit;
+  background: transparent;
+  border: 0;
+  height: 100%;
+  width: 90%;
+  left: 5px;
+}
 
 a.submitBtn {
+  position: relative;
+  top: 5px;
   text-decoration: none;
-  color: #FDFEFE;
+  height: 100%;
+  cursor: pointer;
 }
 
-a#prevBtn, a#nextBtn{
+#prevButton, #nextButton{
   text-decoration: none;
-  color: #454545;
+  color: #ECF0F1;
+  size: 20px;
 }
 
 
 
-.submitBtn:hover, a#prevBtn:hover, a#nextBtn:hover {
+.submitBtn:hover, a#prevButton:hover, a#nextButton:hover {
   color: #3498DB;
   text-decoration: underline;
 }
 
-
 #searchResultsContainer {
   position: relative;
-  border: 1px solid #e4dede;
-  margin: 20px 200px -20px 200px;
+  border: 0px #e4dede;
+  margin: 0px 200px 20px 200px;
 }
 
 #searchResultsNav {
@@ -76,46 +91,59 @@ a#prevBtn, a#nextBtn{
   width: 100%;
   flex-flow: row wrap;
   justify-content: space-between;
+  padding: 30px 0px 0px 0px;
 }
 
 #searchResultsTotal {
-  margin: -20px 0px 0px 10px;
+  margin: -10px 0px 0px 20px;
   font-size: 14px;
+  color: #ECF0F1;
 }
 
 #searchResultsPages {
-  margin: -20px 10px 0px 0px;
+  margin: -10px 20px 0px 0px;
   font-size: 14px;
+  color: #ECF0F1;
 }
 
 
 .streamsContainer {
   display: flex;
   margin: 15px 0px 0px 0px;
+  border: 6px outset #0072CE;
+  overflow: hidden;
+  box-shadow: 15px 10px 10px rgba(0,0,0,0.4);
+    background-image: url(http://swevenmedia.com/wp-content/uploads/2015/09/blue-universe-235865.jpg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  border: 1px solid -webkit-linear-gradient(top, #0072CE, #003087);
 }
 
 .imageContainer {
   flex-flow: column wrap;
+  margin: 0px 0px 0px -20px;
 }
 
 .streamDetails {
   flex-flow: column wrap;
+  margin: 0px 5px 0px -20px;
 }
 
 .name {
-  margin: 10px 0px 30px 15px;
-  font-weight: bold;
-  font-size: 28px;
+  margin: 5px 0px 15px 5px;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #3498DB;
 }
 
 .streamGameAndViewers {
-  margin: 0px 0px 0px 15px;
+  margin: 0px 0px 0px 5px;
   font-size: 16px;
-  color: #454545;
+  color: #A6ACAF;
 }
 
 .streamDescription {
-  margin: 0px 0px 0px 15px;
+  margin: 0px 0px 0px 5px;
   font-size: 16px;
-  color: #454545;
+  color: #A6ACAF;
 }

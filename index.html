@@ -14,25 +14,19 @@
     <div id='mainContainer'>
         <div id='searchContainer'>
           <div class='search-form'>
-            <span id='SonyLogoHeader'>
-              <a href='http://www.sony.com'>
-                <img src='https://www.playstation.com/en-us/etc/designs/pdc/clientlibs_base/images/nav/headersonylogo-home-2x.jpg' alt='Sony' title='SonyLogo' class='sonyLogo' style='background-color: white'>
-              </a></span>
-            </span>
             <span id='PlaystationLogoHeader'>
               <a href='http://www.playstation.com'>
                 <img src='https://media.playstation.com/is/image/SCEA/navigation_home_ps-logo-us?$Icon$' alt='Playstation' title='Playstation Logo' class='playstationLogo'>
               </a>
             </span>
-            <span id='userSearch'>
-              <input type='text' class='apiSearchQuery' placeholder='Search query...' tabindex=1>
-              <button type='submit' class='submitBtn' tabindex=2>Search</button>
-            </span>
+            <div id='userSearch'>
+              <input type='text' class='apiSearchQuery' placeholder='Search query...' tabindex=1 maxlength=255 autocomplete='off'>
+              <a type='submit' class='submitBtn' tabindex=2><img src='https://image.flaticon.com/icons/png/128/34/34202.png' height='20px' width='20px'></a>
+            </div>
           </div>
         </div>
         <div id='searchResultsContainer'>
           <div id='errorHandler'></div>
-          <div id='landingPage'></div>
           <div id='loadingPage'></div>
           <div id='searchResultsView'>
             <div id='searchResultsNav'>
