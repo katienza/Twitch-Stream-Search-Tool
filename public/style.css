@@ -57,7 +57,9 @@ a#prevBtn, a#nextBtn{
   color: #454545;
 }
 
-a.submitBtn:hover, a#prevBtn:hover, a#nextBtn:hover {
+
+
+.submitBtn:hover, a#prevBtn:hover, a#nextBtn:hover {
   color: #3498DB;
   text-decoration: underline;
 }
@@ -66,5 +68,22 @@ a.submitBtn:hover, a#prevBtn:hover, a#nextBtn:hover {
 #searchResultsContainer {
   position: relative;
   border: 1px solid #e4dede;
-  margin: 20px 200px 0px 200px;
+  margin: 20px 200px -20px 200px;
+}
+
+#searchResultsNav {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+#searchResultsTotal {
+  margin: -20px 0px 0px 10px;
+  font-size: 14px;
+}
+
+#searchResultsPages {
+  margin: -20px 10px 0px 0px;
+  font-size: 14px;
 }
