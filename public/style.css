@@ -19,8 +19,17 @@ body {
   font-size: 16px;
 }
 
+#creator {
+  display: inline-block;
+  position: relative;
+  left: 220px;
+  bottom: 35px;
+  font-family: inherit;
+  color: #3498DB;
+}
 
 .search-form {
+  display: block;
   text-align: left;
   background-image: -webkit-linear-gradient(top, #0072CE, #003087);
   background-position: bottom;
@@ -55,7 +64,6 @@ body {
   background: transparent;
   border: 0;
   outline: 0;
-  height: 100%;
   width: 90%;
   left: 7px;
 }
@@ -64,7 +72,7 @@ a.submitBtn {
   position: relative;
   top: 5px;
   text-decoration: none;
-  height: 100%;
+  outline: 0;
   cursor: pointer;
 }
 
@@ -133,7 +141,7 @@ a.submitBtn {
 }
 
 .name {
-  margin: 5px 5px 15px 0px;
+  margin: 5px 5px 10px 0px;
   font-weight: bolder;
   font-size: 30px;
   color: #3498DB;

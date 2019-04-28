@@ -154,7 +154,7 @@ twitchUi.buildPagination = (totalStreams, links) => {
   pagination += "<span id='pageCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
 
   if (typeof next !== 'undefined' && (pageCount < totalPages)) {
-    pagination += " <a id='nextButton' href='"+next+"'>Next</a>"
+    pagination += "<a id='nextButton' href='"+next+"'>Next</a>"
   }
 
   pageTurner.innerHTML = pagination
@@ -187,7 +187,7 @@ twitchUi.buildPaginationFooter = (totalStreams, links) => {
   bottomPagination += "<span id='pageBottomCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
 
   if (typeof next !== 'undefined' && (pageCount < totalPages)) {
-    bottomPagination += " <a id='nextBottomButton' href='"+next+"'>Next</a>"
+    bottomPagination += "<a id='nextBottomButton' href='"+next+"'>Next</a>"
   }
 
   pageTurnerBottom.innerHTML = bottomPagination
@@ -281,7 +281,7 @@ twitchUi.createUiElement = (element, attributes) => {
   const image = twitchUi.createUiElement('img', {src:streamImg})
   const imageLinkDiv = twitchUi.createUiElement('li', {class:'image'})
   const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
-
+  console.log(linkToStream)
   const streamDetails = twitchUi.createUiElement('ul', {class:'streamDetails', style:'list-style-type:none'})
   const titleHeader = twitchUi.createUiElement('li', {class:'name'})
   const info = twitchUi.createUiElement('li', {class:'streamGameAndViewers'})
@@ -295,6 +295,7 @@ twitchUi.createUiElement = (element, attributes) => {
   imageLinkDiv.appendChild(linkToStream)
   imageContainer.appendChild(imageLinkDiv)
 
+  linkToStream.appendChild(titleHeader)
   streamDetails.appendChild(titleHeader)
   streamDetails.appendChild(info)
   streamDetails.appendChild(description)
