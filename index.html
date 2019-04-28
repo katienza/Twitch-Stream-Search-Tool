@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
 
     <title>Twitch Stream Search</title>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito' >
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito'>
+
     <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/loadingPage.css">
 
   </head>
 
@@ -29,9 +31,14 @@
           </div>
         </div>
         <div id='searchResultsContainer'>
-          <div id='errorHandler'></div>
-          <div id='loadingPage'></div>
-          <div id='searchResultsView'>
+          <div id='errorHandler' class='hidden container'></div>
+          <div id='loadingPage' class='hidden container'>
+            <h2> Loading... </h2>
+            <div id='loadingPageWrapper'>
+              <div id='displayLoad'></div>
+            </div>
+          </div>
+          <div id='searchResultsView' class='hidden container'>
             <div id='searchResultsNav'>
               <div id='searchResultsTotal'></div>
               <div id='searchResultsPages'></div>

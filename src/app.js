@@ -40,11 +40,11 @@ searchFormUtil.buildSearchUrl = () => {
   const query = searchFormUtil.getFormValue('apiSearchQuery')
   const queryParams = 'search/streams?q='+query+'&limit=5&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou'
 
-  if (query || query.length > 0) {
-    return encodeURI(queryParams)
+  if (!query || query.length <= 0) {
+    twitchUi.hide('loadingPage')
+    twitchUi.showErrorHandler('Insert a query at the top of the page.')
   } else {
-    // twitchUi.showError('Insert a query in the text field.')
-    return false
+    return encodeURI(queryParams)
   }
 }
 
@@ -55,7 +55,7 @@ searchFormUtil.buildSearchUrl = () => {
 /*
 * Enables searchButton to submit form field value
 */
-searchButton.addEventListener('click', () => twitchQuery.search())
+searchButton.addEventListener('click', () => twitchQuery.find())
 
 /**
  * A keydown handler for the query to support hitting enter
@@ -63,18 +63,18 @@ searchButton.addEventListener('click', () => twitchQuery.search())
  * @param event   The event for particular key attached
  */
 searchQuery.addEventListener('keydown', event => {
-  if (event.keyCode === 13) twitchQuery.search()
+  if (event.keyCode === 13) twitchQuery.find()
 })
 
 /**
  * Builds search query on behalf of user.
  */
- twitchQuery.search = () => {
+ twitchQuery.find = () => {
   const url = twitchQuery.base + searchFormUtil.buildSearchUrl()
   const res = twitchQuery.updateHeaders(url)
 
   if (!searchFormUtil.buildSearchUrl()) return
-  // if (!res) twitchUi.showError('Cannot find results for your current search. Please try again.')
+  if (!res) twitchUi.showError('Cannot find results for your current search. Please try again.')
   twitchUi.pages = 1
  }
 
@@ -106,10 +106,17 @@ twitchQuery.handleResponses = res => {
   const error = data.error
 
   if (totalFound > 0 && !error) {
+    twitchUi.hide('errorHandler')
+    twitchUi.hide('searchResultsView')
+    twitchUi.transition('loadingPage')
     twitchUi.buildStreamsCount(totalFound)
     twitchUi.buildPagination(totalFound, links)
     twitchUi.buildPaginationFooter(totalFound, links)
     twitchUi.buildStreamsContent(streams)
+  } else {
+    twitchUi.hide('searchResultsView')
+    twitchUi.hide('loadingPage')
+    twitchUi.showErrorHandler('No results were found based on your query. Please try your search again.')
   }
 }
 
@@ -209,6 +216,10 @@ twitchUi.buildStreamsContent = streamsList => {
       twitchUi.showStreamData(streamsList[props])
     }
   }
+  setTimeout(() => {
+    twitchUi.hide('loadingPage')
+    twitchUi.transition('searchResultsView')
+  }, 1000)
 }
 
 /**
@@ -242,7 +253,7 @@ twitchUi.pageClick = btnID => {
   } else if (res && (btnID === 'nextButton' || btnID === 'nextBottomButton')) {
     twitchUi.pages = twitchUi.pages + 1
   } else {
-  //   twitchUi.showError('An error has occured. Please try again.')
+    twitchUi.showErrorHandler('An error has occurred. Please try again.')
   }
 }
 
@@ -305,5 +316,31 @@ twitchUi.createUiElement = (element, attributes) => {
   streamsContainer.appendChild(linkToStream)
  }
 
+/********************** User Interface showErrorHandler and transition effects *********************/
 
+twitchUi.hide = selectorID => {
+  const ele = document.getElementById(selectorID)
+  ele.style.display = 'none'
+  ele.style.filter = 'alpha(opacity = 0)'
+  ele.style.opacity = 0
+}
 
+twitchUi.transition = selectorID => {
+  const ele = document.getElementById(selectorID)
+  let opacity = 0.5
+
+  ele.style.display = 'block'
+
+  const transitionTimer = setInterval(() => {
+    if (opacity >= 1) clearInterval(transitionTimer)
+    ele.style.filter = 'alpha(opacity=' + opacity * 100 + ")"
+    ele.style.opacity = opacity
+    opacity += opacity * 0.1
+  }, 70)
+}
+
+twitchUi.showErrorHandler = errorHandler => {
+  const errorHandlerDiv = document.getElementById('errorHandler')
+  errorHandlerDiv.innerHTML = "<h3 class='errorMsg'>"+errorHandler+"</h3>"
+  twitchUi.transition('errorHandler')
+}

@@ -19,6 +19,19 @@ body {
   font-size: 16px;
 }
 
+.hidden {
+  display: none;
+  opacity: 0.1;
+}
+
+.container {
+  position: relative;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ECF0F1;
+}
+
 #creator {
   display: inline-block;
   position: relative;
@@ -96,6 +109,7 @@ a.submitBtn {
 
 #searchResultsNav {
   display: flex;
+  overflow: hidden;
   width: 100%;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -122,6 +136,8 @@ a.submitBtn {
   margin: 15px 0px 0px 0px;
   border: 6px outset #0072CE;
   overflow: hidden;
+  white-space: no wrap;
+  text-overflow: ellipsis;
   box-shadow: 15px 10px 10px rgba(0,0,0,0.4);
     background-image: url(http://swevenmedia.com/wp-content/uploads/2015/09/blue-universe-235865.jpg);
   background-size: auto;
@@ -131,7 +147,7 @@ a.submitBtn {
 
 .imageContainer {
   flex-flow: column wrap;
-  margin: 0px 0px 0px -20px;
+  margin: 7px 0px 0px -20px;
 }
 
 .streamDetails {
@@ -173,4 +189,20 @@ a#prevBottomButton, a#nextBottomButton {
   color: #ECF0F1;
   font-size: 14px;
   cursor: pointer;
+}
+
+
+/* Error Handling */
+#errorHandler {
+  display: inline-block;
+}
+#errorHandler .errorMsg {
+  position: relative;
+  width: 610px;
+  top: 50px;
+  left: 150px;
+  background: transparent;
+  border: 1px dashed #FF0000;
+  font-family: inherit;
+  color: #3498DB;
 }
