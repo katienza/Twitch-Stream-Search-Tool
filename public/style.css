@@ -79,12 +79,11 @@ a.submitBtn {
 #prevButton, #nextButton{
   text-decoration: none;
   color: #ECF0F1;
-  size: 20px;
 }
 
 
 
-.submitBtn:hover, a#prevButton:hover, a#nextButton:hover {
+.submitBtn:hover, a#prevButton:hover, a#nextButton:hover, a#prevBottomButton:hover, a#nextBottomButton:hover {
   color: #3498DB;
   text-decoration: underline;
 }
@@ -164,14 +163,14 @@ a.submitBtn {
   background-color: transparent;
   float: right;
   margin: 10px 20px 10px 0px;
-  text-decoration: none;
   font-family: inherit;
   font-size: 14px;
   color: #ECF0F1;
 }
 
-a #prevBottomButton, a #nextBottomButton {
-  background: none;
+a#prevBottomButton, a#nextBottomButton {
   text-decoration: none;
+  color: #ECF0F1;
+  font-size: 14px;
   cursor: pointer;
 }

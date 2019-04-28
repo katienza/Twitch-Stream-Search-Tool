@@ -181,7 +181,7 @@ twitchUi.buildPaginationFooter = (totalStreams, links) => {
   let next = links.next
 
   if (typeof prev !== 'undefined') {
-    bottomPagination += "<a id='prevBottomButton' href='"+prev+"'>Previous</a>"
+    bottomPagination += "<a id='prevBottomButton' href="+prev+">Previous</a>"
   }
 
   bottomPagination += "<span id='pageBottomCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
@@ -280,8 +280,8 @@ twitchUi.createUiElement = (element, attributes) => {
   const imageContainer = twitchUi.createUiElement('ul', {class:'imageContainer', style:'list-style-type:none'})
   const image = twitchUi.createUiElement('img', {src:streamImg})
   const imageLinkDiv = twitchUi.createUiElement('li', {class:'image'})
-  const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank'})
-  console.log(linkToStream)
+  const linkToStream = twitchUi.createUiElement('a', {class:'streamLink', title:streamTitle, href:streamUrl, rel:streamUrl + '/embed', target:'_blank', style:"text-decoration:none"})
+
   const streamDetails = twitchUi.createUiElement('ul', {class:'streamDetails', style:'list-style-type:none'})
   const titleHeader = twitchUi.createUiElement('li', {class:'name'})
   const info = twitchUi.createUiElement('li', {class:'streamGameAndViewers'})
@@ -291,11 +291,9 @@ twitchUi.createUiElement = (element, attributes) => {
   info.innerText = streamGameAndViewers
   description.innerText = streamDescription
 
-  linkToStream.appendChild(image)
-  imageLinkDiv.appendChild(linkToStream)
+  imageLinkDiv.appendChild(image)
   imageContainer.appendChild(imageLinkDiv)
 
-  linkToStream.appendChild(titleHeader)
   streamDetails.appendChild(titleHeader)
   streamDetails.appendChild(info)
   streamDetails.appendChild(description)
@@ -303,7 +301,8 @@ twitchUi.createUiElement = (element, attributes) => {
   containerDiv.appendChild(imageContainer)
   containerDiv.appendChild(streamDetails)
 
-  streamsContainer.appendChild(containerDiv)
+  linkToStream.appendChild(containerDiv)
+  streamsContainer.appendChild(linkToStream)
  }
 
 
