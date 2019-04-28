@@ -9,7 +9,7 @@ html {
 
 body {
   font-family: 'Nunito', 'arial', sans-serif;
-  background-image: url(https://cdn.wallpapersafari.com/3/42/uWyP3b.jpg);
+  background-image: url(https://i.pinimg.com/originals/bc/76/79/bc76792efc8ffe5b2878d2f8684b2998.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #f6f6f6;
@@ -54,9 +54,10 @@ body {
   font-family: inherit;
   background: transparent;
   border: 0;
+  outline: 0;
   height: 100%;
   width: 90%;
-  left: 5px;
+  left: 7px;
 }
 
 a.submitBtn {
@@ -97,12 +98,14 @@ a.submitBtn {
 #searchResultsTotal {
   margin: -10px 0px 0px 20px;
   font-size: 14px;
+  font-family: inherit;
   color: #ECF0F1;
 }
 
 #searchResultsPages {
   margin: -10px 20px 0px 0px;
   font-size: 14px;
+  font-family: inherit;
   color: #ECF0F1;
 }
 
@@ -130,20 +133,37 @@ a.submitBtn {
 }
 
 .name {
-  margin: 5px 0px 15px 5px;
+  margin: 5px 5px 15px 0px;
   font-weight: bolder;
   font-size: 30px;
   color: #3498DB;
 }
 
 .streamGameAndViewers {
-  margin: 0px 0px 0px 5px;
+  margin: 0px 5px 0px 0px;
   font-size: 16px;
   color: #A6ACAF;
 }
 
 .streamDescription {
-  margin: 0px 0px 0px 5px;
+  margin: 0px 5px 0px 0px;
   font-size: 16px;
   color: #A6ACAF;
+}
+
+#footer {
+  position: relative;
+  background-color: transparent;
+  float: right;
+  margin: 10px 20px 10px 0px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: #ECF0F1;
+}
+
+a #prevBottomButton, a #nextBottomButton {
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
 }

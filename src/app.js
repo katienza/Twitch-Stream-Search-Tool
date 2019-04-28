@@ -88,6 +88,8 @@ twitchQuery.updateHeaders = url => {
 
     document.head.appendChild(script)
     document.head.removeChild(script)
+
+    return true
 }
 
 /**
@@ -106,6 +108,7 @@ twitchQuery.handleResponses = res => {
   if (totalFound > 0 && !error) {
     twitchUi.buildStreamsCount(totalFound)
     twitchUi.buildPagination(totalFound, links)
+    twitchUi.buildPaginationFooter(totalFound, links)
     twitchUi.buildStreamsContent(streams)
   }
 }
@@ -134,27 +137,63 @@ twitchUi.buildStreamsCount = totalStreams => {
  * and next and previous pagination
  *
  * @param links     Receives next and prev values
- *
+ * @param totalStreams  Receives number of streams
  */
 twitchUi.buildPagination = (totalStreams, links) => {
   const pageTurner = document.getElementById('searchResultsPages')
   let totalPages = Math.ceil(totalStreams / 5)
+  let pageCount = twitchUi.pages
   let pagination = ""
+  let prev = links.prev
+  let next = links.next
 
-  if (typeof links.prev !== 'undefined') {
-    pagination += "<a id='prevButton' href='"+links.prev+"'>&ltrif;</a>"
+  if (typeof prev !== 'undefined') {
+    pagination += "<a id='prevButton' href='"+prev+"'>Previous</a>"
   }
 
-  pagination += "<span id='pageCount'>"+twitchUi.pages+"/"+totalPages+"</span>"
+  pagination += "<span id='pageCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
 
-  if (typeof links.next !== 'undefined' && (twitchUi.pages < totalPages)) {
-    pagination += " <a id='nextButton' href='"+links.next+"'>&rtrif;</a>"
+  if (typeof next !== 'undefined' && (pageCount < totalPages)) {
+    pagination += " <a id='nextButton' href='"+next+"'>Next</a>"
   }
 
   pageTurner.innerHTML = pagination
 
   twitchUi.initPageClick('nextButton')
   twitchUi.initPageClick('prevButton')
+
+  document.getElementById('streamsContainer').innerHTML = ""
+}
+
+/**
+ * Returns current/total page count
+ * and next and previous pagination for footer
+ *
+ * @param links     Receives next and prev values
+ * @param totalStreams  Receives number of streams
+ */
+twitchUi.buildPaginationFooter = (totalStreams, links) => {
+  const pageTurnerBottom = document.getElementById('footer')
+  let totalPages = Math.ceil(totalStreams / 5)
+  let pageCount = twitchUi.pages
+  let bottomPagination = ""
+  let prev = links.prev
+  let next = links.next
+
+  if (typeof prev !== 'undefined') {
+    bottomPagination += "<a id='prevBottomButton' href='"+prev+"'>Previous</a>"
+  }
+
+  bottomPagination += "<span id='pageBottomCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
+
+  if (typeof next !== 'undefined' && (pageCount < totalPages)) {
+    bottomPagination += " <a id='nextBottomButton' href='"+next+"'>Next</a>"
+  }
+
+  pageTurnerBottom.innerHTML = bottomPagination
+
+  twitchUi.initPageClick('prevBottomButton')
+  twitchUi.initPageClick('nextBottomButton')
 
   document.getElementById('streamsContainer').innerHTML = ""
 }
@@ -198,9 +237,9 @@ twitchUi.pageClick = btnID => {
   let res = twitchQuery.updateHeaders(pageAPIUrl+"&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou")
 
 
-  if (res && btnID === 'prevButton') {
+  if (res && (btnID === 'prevButton' || btnID === 'prevBottomButton')) {
     twitchUi.pages = twitchUi.pages - 1
-  } else if (res && btnID === 'nextButton') {
+  } else if (res && (btnID === 'nextButton' || btnID === 'nextBottomButton')) {
     twitchUi.pages = twitchUi.pages + 1
   } else {
   //   twitchUi.showError('An error has occured. Please try again.')
@@ -255,11 +294,14 @@ twitchUi.createUiElement = (element, attributes) => {
   linkToStream.appendChild(image)
   imageLinkDiv.appendChild(linkToStream)
   imageContainer.appendChild(imageLinkDiv)
+
   streamDetails.appendChild(titleHeader)
   streamDetails.appendChild(info)
   streamDetails.appendChild(description)
+
   containerDiv.appendChild(imageContainer)
   containerDiv.appendChild(streamDetails)
+
   streamsContainer.appendChild(containerDiv)
  }
 
