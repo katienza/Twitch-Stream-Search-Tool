@@ -288,6 +288,7 @@ twitchUi.createUiElement = (element, attributes) => {
   const streamGameAndViewers = streamGame + ' - ' + streamViewers + ' viewers'
 
   const containerDiv = twitchUi.createUiElement('div', {id: streamData._id, class:'streamsContainer'})
+
   const imageContainer = twitchUi.createUiElement('ul', {class:'imageContainer', style:'list-style-type:none'})
   const image = twitchUi.createUiElement('img', {src:streamImg})
   const imageLinkDiv = twitchUi.createUiElement('li', {class:'image'})

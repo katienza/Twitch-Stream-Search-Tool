@@ -1,11 +1,14 @@
 #loadingPageWrapper {
     position: relative;
-    height: 350px;
-
+    height: 100%;
+    top: 5em;
 }
+
 #loadingPage h2 {
     position: relative;
-    left: 420px;
+    width: 100%;
+    left: 45%;
+    top: 5em;
 }
 
 #displayLoad {
