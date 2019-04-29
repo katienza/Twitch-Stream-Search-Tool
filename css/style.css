@@ -33,7 +33,7 @@ body {
 }
 
 #creator {
-  display: block;
+  display: inline-block;
   position: relative;
   left: 220px;
   bottom: 35px;
