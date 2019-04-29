@@ -1,5 +1,5 @@
 # Twitch-Stream-Search-Tool
-Twitch stream search app using Vanilla JavaScript to fetch and show streams from Twitch API
+Twitch stream search app using Vanilla JavaScript to fetch and show streams from Twitch API based on input from user query
 
 ## Motivation
 Technical Challenge
@@ -16,7 +16,7 @@ Technical Challenge
 - No webpack
 
 ## TECH STACK
-```Vanilla JavasScript```
+```Vanilla JavaScript```
 ```HTML```
 ```CSS```
 
@@ -28,6 +28,8 @@ https://katienza.github.io/Twitch-Stream-Search-Tool/
 ## Getting Started
 Type the following into your console:
 
+```git clone https://github.com/katienza/Twitch-Stream-Search-Tool.git```
+```cd Twitch-Stream-Search-Tool ```
 ```http-server```
 
 ## Start
