@@ -1,0 +1,108 @@
+/* Extra small devices (phones, 600px and down) */
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .container {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #PlaystationLogoHeader {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #creator {
+    display: none;
+  }
+
+  #userSearch {
+    width: 70%;
+  }
+
+  .apiSearchQuery {
+    width: 85%;
+  }
+
+  #searchResultsContainer {
+    position:relative;
+    width: 100%;
+    margin: 0% 0% 0% 0%;
+  }
+
+  .streamsContainer {
+    display: block;
+    position: relative;
+    margin-top: 20px;
+    float: none;
+    padding: 10px;
+    overflow: hidden;
+    white-space: no wrap;
+    text-overflow: ellipsis;
+    box-shadow: 15px 10px 10px rgba(0,0,0,0.4);
+  }
+
+  .streamsContainer:hover, .streamsContainer:focus, .streamsContainer:active{
+    border: 6px outset #FDFEFE;
+  }
+
+  .imageContainer {
+    position: relative;
+    padding-left: 5%;
+  }
+
+  .streamDetails {
+    position: relative;
+    right: 3rem;
+    margin: 0rem 2rem 0rem 0rem;
+    overflow-wrap: break-word;
+  }
+
+  .name {
+    position: relative;
+    font-size: 20px;
+    left: 1.5rem;
+    overflow-wrap: break-word;
+  }
+
+  .streamGameAndViewers {
+    position: relative;
+    font-size: 12px;
+    left: 1.5rem;
+    overflow-wrap: break-word;
+  }
+
+  .streamDescription {
+    position: relative;
+    font-size: 12px;
+    left: 1.5rem;
+    overflow-wrap: break-word;
+  }
+
+
+  #loadingPage h2 {
+    position: relative;
+    left: 35%;
+  }
+
+  #errorHandler {
+    display: inline-block;
+  }
+
+  #errorHandler .errorMsg {
+    position: relative;
+    width: 20rem;
+    top: 2rem;
+    left: 2rem;
+    background: transparent;
+    font-family: inherit;
+    border: none;
+    color: rgb(200, 0, 0);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media screen and (min-width: 600px) and (max-width: 768px){
+  #creator {
+    display: none;
+  }
+}

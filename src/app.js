@@ -7,7 +7,7 @@
 // CONST
 const searchFormUtil = {};
 const twitchQuery = {
-  base: 'https://api.twitch.tv/kraken/'
+  base: 'https://api.twitch.tv/kraken/search/streams?q='
 }
 const twitchUi = {
   searchBtn: document.querySelector('.submitBtn'),
@@ -38,9 +38,10 @@ searchFormUtil.getFormValue = selector => {
  */
 searchFormUtil.buildSearchUrl = () => {
   const query = searchFormUtil.getFormValue('apiSearchQuery')
-  const queryParams = 'search/streams?q='+query+'&limit=5&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou'
+  const queryParams = query+'&limit=5&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou'
 
   if (!query || query.length <= 0) {
+    twitchUi.hide('searchResultsView')
     twitchUi.hide('loadingPage')
     twitchUi.showErrorHandler('Insert a query at the top of the page.')
   } else {
