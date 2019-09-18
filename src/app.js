@@ -102,7 +102,7 @@ twitchQuery.updateHeaders = url => {
 twitchQuery.handleResponses = res => {
   const data = JSON.parse(res)
   const totalFound = data._total
-  const links = data._links
+  // const links = data._links
   const streams = data.streams
   const error = data.error
 
@@ -111,8 +111,8 @@ twitchQuery.handleResponses = res => {
     twitchUi.hide('searchResultsView')
     twitchUi.transition('loadingPage')
     twitchUi.buildStreamsCount(totalFound)
-    twitchUi.buildPagination(totalFound, links)
-    twitchUi.buildPaginationFooter(totalFound, links)
+    // twitchUi.buildPagination(totalFound, links)
+    // twitchUi.buildPaginationFooter(totalFound, links)
     twitchUi.buildStreamsContent(streams)
   } else {
     twitchUi.hide('searchResultsView')
@@ -147,31 +147,31 @@ twitchUi.buildStreamsCount = totalStreams => {
  * @param links     Receives next and prev values
  * @param totalStreams  Receives number of streams
  */
-twitchUi.buildPagination = (totalStreams, links) => {
-  const pageTurner = document.getElementById('searchResultsPages')
-  let totalPages = Math.ceil(totalStreams / 5)
-  let pageCount = twitchUi.pages
-  let pagination = ""
-  let prev = links.prev
-  let next = links.next
+// twitchUi.buildPagination = (totalStreams, links) => {
+//   const pageTurner = document.getElementById('searchResultsPages')
+//   let totalPages = Math.ceil(totalStreams / 5)
+//   let pageCount = twitchUi.pages
+//   let pagination = ""
+//   let prev = links.prev
+//   let next = links.next
 
-  if (typeof prev !== 'undefined') {
-    pagination += "<a id='prevButton' href='"+prev+"'>Previous</a>"
-  }
+//   if (typeof prev !== 'undefined') {
+//     pagination += "<a id='prevButton' href='"+prev+"'>Previous</a>"
+//   }
 
-  pagination += "<span id='pageCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
+//   pagination += "<span id='pageCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
 
-  if (typeof next !== 'undefined' && (pageCount < totalPages)) {
-    pagination += "<a id='nextButton' href='"+next+"'>Next</a>"
-  }
+//   if (typeof next !== 'undefined' && (pageCount < totalPages)) {
+//     pagination += "<a id='nextButton' href='"+next+"'>Next</a>"
+//   }
 
-  pageTurner.innerHTML = pagination
+//   pageTurner.innerHTML = pagination
 
-  twitchUi.initPageClick('nextButton')
-  twitchUi.initPageClick('prevButton')
+//   twitchUi.initPageClick('nextButton')
+//   twitchUi.initPageClick('prevButton')
 
-  document.getElementById('streamsContainer').innerHTML = ""
-}
+//   document.getElementById('streamsContainer').innerHTML = ""
+// }
 
 /**
  * Returns current/total page count
@@ -180,31 +180,31 @@ twitchUi.buildPagination = (totalStreams, links) => {
  * @param links     Receives next and prev values
  * @param totalStreams  Receives number of streams
  */
-twitchUi.buildPaginationFooter = (totalStreams, links) => {
-  const pageTurnerBottom = document.getElementById('footer')
-  let totalPages = Math.ceil(totalStreams / 5)
-  let pageCount = twitchUi.pages
-  let bottomPagination = ""
-  let prev = links.prev
-  let next = links.next
+// twitchUi.buildPaginationFooter = (totalStreams, links) => {
+//   const pageTurnerBottom = document.getElementById('footer')
+//   let totalPages = Math.ceil(totalStreams / 5)
+//   let pageCount = twitchUi.pages
+//   let bottomPagination = ""
+//   let prev = links.prev
+//   let next = links.next
 
-  if (typeof prev !== 'undefined') {
-    bottomPagination += "<a id='prevBottomButton' href="+prev+">Previous</a>"
-  }
+//   if (typeof prev !== 'undefined') {
+//     bottomPagination += "<a id='prevBottomButton' href="+prev+">Previous</a>"
+//   }
 
-  bottomPagination += "<span id='pageBottomCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
+//   bottomPagination += "<span id='pageBottomCount'>"+" "+pageCount+"/"+totalPages+" "+"</span>"
 
-  if (typeof next !== 'undefined' && (pageCount < totalPages)) {
-    bottomPagination += "<a id='nextBottomButton' href='"+next+"'>Next</a>"
-  }
+//   if (typeof next !== 'undefined' && (pageCount < totalPages)) {
+//     bottomPagination += "<a id='nextBottomButton' href='"+next+"'>Next</a>"
+//   }
 
-  pageTurnerBottom.innerHTML = bottomPagination
+//   pageTurnerBottom.innerHTML = bottomPagination
 
-  twitchUi.initPageClick('prevBottomButton')
-  twitchUi.initPageClick('nextBottomButton')
+//   twitchUi.initPageClick('prevBottomButton')
+//   twitchUi.initPageClick('nextBottomButton')
 
-  document.getElementById('streamsContainer').innerHTML = ""
-}
+//   document.getElementById('streamsContainer').innerHTML = ""
+// }
 
 /* Builds content for stream
  *
