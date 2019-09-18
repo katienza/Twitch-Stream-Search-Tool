@@ -7,7 +7,7 @@
 // CONST
 const searchFormUtil = {};
 const twitchQuery = {
-  base: 'https://api.twitch.tv/kraken/search/streams?q='
+  base: 'https://api.twitch.tv/kraken/search/streams?query='
 }
 const twitchUi = {
   searchBtn: document.querySelector('.submitBtn'),
@@ -38,7 +38,7 @@ searchFormUtil.getFormValue = selector => {
  */
 searchFormUtil.buildSearchUrl = () => {
   const query = searchFormUtil.getFormValue('apiSearchQuery')
-  const queryParams = query+'&limit=5&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou'
+  const queryParams = query+'&limit=5'+'&callback=stringifyjsoncb'+'&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou'+'&api_version=5'
 
   if (!query || query.length <= 0) {
     twitchUi.hide('searchResultsView')
@@ -246,7 +246,7 @@ twitchUi.initPageClick = btnID => {
  */
 twitchUi.pageClick = btnID => {
   let pageAPIUrl = document.getElementById(btnID).getAttribute('href')
-  let res = twitchQuery.updateHeaders(pageAPIUrl+"&callback=stringifyjsoncb&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou")
+  let res = twitchQuery.updateHeaders(pageAPIUrl+"&callback=stringifyjsoncb"+"&client_id=imsyx3x5l3ld754zt6wkzwntlqiwou"+"&api_version=5")
 
 
   if (res && (btnID === 'prevButton' || btnID === 'prevBottomButton')) {
