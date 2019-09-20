@@ -9,7 +9,7 @@ html {
 
 body {
   font-family: 'Nunito', 'arial', sans-serif;
-  background-image: url(../PS.jpg);
+  background-image: url(../src/assets/PS.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #f6f6f6;
@@ -35,7 +35,7 @@ body {
 #creator {
   display: inline-block;
   position: relative;
-  left: 220px;
+  left: 25%;
   bottom: 35px;
   font-family: inherit;
   color: #3498DB;
@@ -137,7 +137,7 @@ a.submitBtn {
   overflow: hidden;
   text-overflow: ellipsis;
   box-shadow: 15px 10px 10px rgba(0,0,0,0.4);
-    background-image: url(../Galaxy.jpg);
+    background-image: url(../src/assets/Galaxy.jpg);
   background-size: auto;
   background-repeat: no-repeat;
 }
