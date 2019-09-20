@@ -9,7 +9,7 @@ html {
 
 body {
   font-family: 'Nunito', 'arial', sans-serif;
-  background-image: url(https://i.pinimg.com/originals/bc/76/79/bc76792efc8ffe5b2878d2f8684b2998.jpg);
+  background-image: url(../PS.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #f6f6f6;
@@ -137,7 +137,7 @@ a.submitBtn {
   overflow: hidden;
   text-overflow: ellipsis;
   box-shadow: 15px 10px 10px rgba(0,0,0,0.4);
-    background-image: url(http://swevenmedia.com/wp-content/uploads/2015/09/blue-universe-235865.jpg);
+    background-image: url(../Galaxy.jpg);
   background-size: auto;
   background-repeat: no-repeat;
 }
